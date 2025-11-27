@@ -4,8 +4,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e1e1e, #121212);
-    color: #f1f1f1;
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -19,10 +19,10 @@ body {
     width: 95%;
     max-width: 1400px;
     margin: 20px auto;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(103, 95, 186, 0.12); /* subtle purple tint */
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
     padding: 20px;
     animation: gradientShift 10s infinite alternate;
 }
@@ -38,10 +38,10 @@ body {
 
 @keyframes gradientShift {
     0% {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(103, 95, 186, 0.10);
     }
     100% {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(103, 95, 186, 0.18);
     }
 }
 
@@ -51,7 +51,7 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: popUp 0.8s ease-out forwards;
-    background: linear-gradient(135deg, #efe5ef, #35ec60);
+    background: linear-gradient(135deg, #ffffff, #857cff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -60,7 +60,6 @@ h1 {
     margin-bottom: 30px;
     width: 100%;
     font-size: 3em;
-    /* Pixelated font styles */
     font-family: 'Press Start 2P', 'Courier New', monospace;
     text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
     image-rendering: pixelated;
@@ -85,12 +84,11 @@ h1 {
 }
 
 .challenge {
-    background-color: rgba(47, 35, 35, 0.8);
+    background: linear-gradient(135deg, rgba(40, 40, 60, 0.9), rgba(25, 25, 45, 0.95));
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     padding: 25px;
     border: 1px solid transparent;
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(25, 25, 25, 0.95));
     position: relative;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     overflow: hidden;
@@ -121,13 +119,13 @@ h1 {
 .challenge:hover {
     border-color: #8b2be2;
     box-shadow: 0 0 20px #8b2be2, 0 0 30px #8b2be2, 0 0 40px #8b2be2;
-    background: linear-gradient(135deg, rgba(45, 45, 45, 0.95), rgba(30, 30, 30, 1));
+    background: linear-gradient(135deg, rgba(45, 45, 60, 0.95), rgba(30, 30, 50, 1));
     transform: translateY(-5px) scale(1.02);
 }
 
 .challenge h2 {
     margin: 0 0 15px;
-    color: #ffffff;
+    color: transparent;
     font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
     font-weight: 600;
     font-size: 1.4em;
@@ -135,7 +133,7 @@ h1 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     border-left: 4px solid #667eea;
     padding-left: 12px;
-    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    background: linear-gradient(135deg, #ffffff, #857cff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -181,25 +179,24 @@ h1 {
     width: calc(100% - 20px);
     padding: 12px 15px;
     margin: 15px 0 10px;
-    border: 1px solid #555;
     border-radius: 6px;
-    background: linear-gradient(135deg, #2a2a2a, #333);
-    color: #f1f1f1;
+    background: linear-gradient(135deg, #2a2a40, #333349);
+    color: #e0e0e0;
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.9em;
+    border: 1px solid #444477;
     transition: all 0.3s ease;
-    border: 1px solid #444;
 }
 
 .flag-input:focus {
     border-color: #667eea;
-    background: linear-gradient(135deg, #333, #3a3a3a);
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #333349, #3a3a5a);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
     outline: none;
 }
 
 .flag-input::placeholder {
-    color: #888;
+    color: #888abb;
     font-family: 'Inter', sans-serif;
 }
 
@@ -231,7 +228,7 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: linear-gradient(135deg, #00b09b, #96c93d);
+    background: linear-gradient(135deg, #4a9acc, #7e97d4);
     color: white;
     cursor: pointer;
     text-align: center;
@@ -254,8 +251,8 @@ h1 {
 }
 
 .submit-button:hover {
-    background: linear-gradient(135deg, #009c85, #85b536);
-    box-shadow: 0 6px 20px rgba(0, 176, 155, 0.5);
+    background: linear-gradient(135deg, #3a8cc9, #6580d4);
+    box-shadow: 0 6px 20px rgba(70, 100, 180, 0.6);
 }
 
 .hint-button {
@@ -263,8 +260,8 @@ h1 {
     padding: 12px;
     border: none;
     border-radius: 6px;
-    background: linear-gradient(135deg, #f7971e, #ffd200);
-    color: white;
+    background: linear-gradient(135deg, #b88fee, #d6c7ff);
+    color: #1a0d51;
     cursor: pointer;
     margin-top: 10px;
     transition: all 0.3s ease;
@@ -275,15 +272,15 @@ h1 {
 }
 
 .hint-button:hover {
-    background: linear-gradient(135deg, #e6891b, #e6bf00);
+    background: linear-gradient(135deg, #a17bdc, #cbbcff);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(247, 151, 30, 0.5);
+    box-shadow: 0 6px 20px rgba(184, 143, 238, 0.5);
 }
 
 .hint {
     display: none;
     background: linear-gradient(135deg, rgba(51, 51, 51, 0.9), rgba(40, 40, 40, 0.9));
-    border-left: 4px solid #ffd200;
+    border-left: 4px solid #8b2be2;
     padding: 15px;
     margin: 15px 0;
     color: #cccccc;
@@ -292,7 +289,7 @@ h1 {
     font-style: italic;
     line-height: 1.6;
     animation: fadeIn 0.5s ease forwards;
-    border: 1px solid rgba(255, 210, 0, 0.3);
+    border: 1px solid rgba(139, 43, 226, 0.3);
 }
 
 .error-message {
@@ -303,6 +300,7 @@ h1 {
     font-size: 0.9em;
     text-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
 }
+
 /* Navigation Buttons */
 .navigation-buttons {
     display: flex;
@@ -348,6 +346,7 @@ h1 {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
+
 .total-points {
     position: fixed;
     bottom: 20px;
@@ -370,7 +369,7 @@ h1 {
 
 .tag {
     display: inline-block;
-    background: linear-gradient(135deg, #444, #555);
+    background: linear-gradient(135deg, #444464, #555575);
     color: #ddd;
     padding: 6px 12px;
     border-radius: 20px;
@@ -379,11 +378,11 @@ h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     transition: all 0.3s ease;
-    border: 1px solid #666;
+    border: 1px solid #666688;
 }
 
 .tag:hover {
-    background: linear-gradient(135deg, #555, #666);
+    background: linear-gradient(135deg, #555575, #666686);
     transform: scale(1.08) translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
