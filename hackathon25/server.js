@@ -10,40 +10,20 @@ const scores = {};
 
 // Flags securely stored on server by challenge index
 const FLAGS = {
-  0: "flag{d3crypt1ng1sfUn}",
-  1: "flag{xxxx}",
-  2: "flag{john_your_buddy}",
-  3: "flag{delightful_victory}",
-  4: "flag{onethis_is_on_imma_make_a_to_obfuscate}",
-  5: "flag{flags_are_adorable222}",
-  6: "ctf{heyo}",
-  7: "flag{safqdehnbrco}",
-  8: "ctf{client_side_authentication_is_always_a_bad_idea}",
-  9: "flag{yes_the_dino_swims}",
-  10: "flag{7g8h9i}",
-  11: "byuctf{yes_yes_it_is_a_qr_code_q56rtikb}",
-  12: "ctf{He's beginning to believe!}",
-  13: "ctf{me160879ro}",
-  14: "flag{vigenere_donendusted}"
+  0: "flag{win_win_win}",
+  1: "flag{soooo_hard}",
+  2: "flag{}",
+  3: "flag{}",
+  4: "flag{}"
 };
 
 // Hints securely stored on server by challenge index
 const HINTS = [
-  "Ever thought how ships used to share signals in earlier times.",
-  "You may wanna focus on the question.",
-  "Did you pay attention on the file name and the question?",
-  "Have u ever seen the source code??",
-  "Its all in the name of the file",
-  "Is it encrypted TWICE maybe THRICEEEEEE?!!?!",
-  "JACKTHERIPPER",
-  "Consider how each letter might be used to spell out something in a specific order.",
-  "The JavaScript code may be tampered, look closely!",
-  "Images are known for hiding valuable piece of information. This can be done through various techniques.",
-  "CHECKSOME",
-  "all u need is a text editor(notnotepad) and ctrl+f",
-  "Read the code and check line 104 PROPERLY (#)",
-  "USE ROCKYOU.txt",
-  'What could be the "KEY" you need to decode this message?'
+  "The script is searching for a silent partner; scrutinize every file access and dependency. A keen eye on the filesystem will reveal the missing piece.",
+  "I heard the browser allows you configure the website's code???, AND HEY look for what's behind the image retrieved",
+  "",
+  "",
+  ""
 ];
 
 // Serve main.html by default

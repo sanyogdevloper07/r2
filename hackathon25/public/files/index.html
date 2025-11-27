@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Elusive Download</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .content-box {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        #elusive-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            background-color: #238636;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(45, 235, 75, 0.5);
+            z-index: 10;
+        }
+        #elusive-button:hover {
+            background-color: #31a44a;
+        }
+        .button-area {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            border: 2px dashed #30363d;
+            border-radius: 8px;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-box">
+        <h1>The Ghost in the Machine: Anomaly Detection</h1>
+        
+        <p>
+            In the realm of advanced cybernetics, anomalies often hide in plain sight. This file represents a critical data packet containing a payload essential for system decryption, requiring external tools and precise execution for retrieval.
+        </p>
+        <p>
+            The acquisition protocol is unstable. To prevent unauthorized access, the download trigger has been configured to exhibit erratic behavior. You must secure the data before the connection is severed.
+        </p>
+
+        <div class="button-area" id="button-container">
+            <button 
+                id="elusive-button"
+                onmousemove="moveButton()" 
+                onclick="downloadImage('website.jpg')"
+            >
+                Download Critical Payload
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const is_button_movable = true;
+
+        const button = document.getElementById('elusive-button');
+        const container = document.getElementById('button-container');
+
+        function moveButton() {
+            if (!is_button_movable) {
+                return;
+            }
+
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+
+            const maxX = containerRect.width - buttonRect.width;
+            const maxY = containerRect.height - buttonRect.height;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+            
+            button.style.transform = 'none';
+        }
+
+        function downloadImage(fileName) {
+            alert(`[DOWNLOAD INITIATED] Attempting to retrieve file: ${fileName}. Please check network activity.`);
+            
+            const a = document.createElement('a');
+            a.href = fileName; 
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        window.onload = () => {
+             if (is_button_movable) {
+                 button.style.left = '50%';
+                 button.style.top = '50%';
+                 button.style.transform = 'translate(-50%, -50%)';
+             }
+        };
+
+    </script>
+</body>
+</html>
