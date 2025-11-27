@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #15130e, #0a0805 70%); 
+    color: #fff8e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: linear-gradient(145deg, #241d0f, #17120a);
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 
+        0 0 20px rgba(255, 193, 7, 0.15),
+        0 10px 30px rgba(0, 0, 0, 0.7);
+    max-width: 450px;
+    width: 90%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 0 30px rgba(255, 202, 40, 0.25),
+        0 15px 45px rgba(0, 0, 0, 0.9);
+}
+
+.top-image {
+    width: 500px;
+    height: auto;
+    margin-top: 10%;
+    margin-right: 10%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.45));
+}
+
+h1 {
+    color: #ffc107; /* Deep Gold for the main heading */
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0;
+    /* --- NEW MATTE/EMBOSSED TEXT EFFECT --- */
+    text-shadow: 
+        1px 1px 1px #5d4803, /* Dark shadow for depth */
+        -1px -1px 1px #fffae8; /* Light shadow for highlight */
+}
+
+h2 {
+    color: #fff8e1;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 24px);
+    padding: 14px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #241c13;
+    color: #fffae8;
+    font-size: 16px;
+    transition: 0.3s ease;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 2px solid #ffd700;
+    outline: none;
+    box-shadow:
+        0 0 12px rgba(255, 215, 0, 0.7),
+        inset 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ffc107, #b8860b);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+    box-shadow: 0 0 14px rgba(255, 193, 7, 0.35);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ffd700, #c49a00);
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.55);
+}
+
+.error-message {
+    color: #ffb74d;
+    font-size: 14px;
+    margin-top: 10px;
+    text-shadow: 0 0 6px rgba(255, 167, 38, 0.5);
+}

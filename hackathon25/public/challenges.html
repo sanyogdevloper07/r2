@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodArt'24 Challenges</title>
+    <link rel="stylesheet" href="styles2.css" />
+    <!-- Add font imports for better typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .status-image {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: none;
+        width: 28px;
+        height: 28px;
+        transition: transform 0.3s ease;
+      }
+
+      .status-image.visible {
+        transform: scale(1.1);
+      }
+
+      /* Ensure challenge numbers are properly positioned */
+      .challenge {
+        position: relative;
+        padding-right: 80px; /* Make space for the number badge */
+      }
+
+      /* Additional styles for grid layout */
+      .challenges-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Make sure container is properly structured */
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>CTF Challenges</h1>
+
+      <div class="navigation-buttons">
+        <button
+          onclick="redirectToScorecard()"
+          class="nav-button scorecard-btn"
+        >
+          Scoreboard
+        </button>
+        <button onclick="logout()" class="nav-button logout-btn">Logout</button>
+      </div>
+      <div class="challenges-container" id="challengesGrid">
+        <!-- Challenges will be dynamically generated here -->
+      </div>
+    </div>
+
+    <div class="total-points">
+      Total Points: <span id="total-points">0</span>
+    </div>
+
+    <script>
+      const points = new Array(15).fill(30);
+
+      const fileNames = [
+        "millitary.jpg",
+        "yourflag.txt",
+        "johncen.jpeg",
+        "test.html",
+        "obfuscJStor.js",
+        "HEHE.txt",
+        "jkrip.txt",
+        "WOWOWOWOWOW.txt",
+        "web_boom.zip",
+        "SwimmingSecret.png",
+        "hashhhhh.txt",
+        "scanme.txt",
+        "falling text.zip",
+        "Pass.txt",
+        "cipher++.txt",
+      ];
+
+      const descriptions = [
+        "TAP-TAP<br>Note- Flag is case sensitive<br> Flag format - flag{xxxx}",
+        "IT IS NOT WHAT U THINK IT ISSSSSSS 👿👿<br> Flag format - Flag(xxxx)",
+        "RED GREEN BLUE",
+        "Do you know how a website is made?",
+        "Javascript?? Really??",
+        "Why is it encrypted that way?",
+        "I dumped the SAM, SYSTEM, and SECURITY files from a Windows machine and retrieved this hash.<br> A text document said the password is only 4 characters long. Can you crack it?<br>FLAG FORMAT - ctf{password}",
+        "I came across this malicious code, but I'm not quite sure what language it's written in... can you help me?",
+        "if java script had a bad day",
+        "An ordinary-looking image file hides a clandestine message that only the sharp-eyed can reveal. Your task is to decode this image and uncover the hidden flag. <br> FLAG FORMAT - flag{}",
+        "random words?? ugh. Try refining them.x`",
+        "who knew qr codes could ghost u",
+        "IT IT RAINING TEXT!?",
+        `We managed to get another password, and we believe it's located in the rockyou.txt list. Can you find the password?`,
+        "A cryptic message has been intercepted and needs to be decrypted. Go ahead and try finding out the secrets it holds.",
+      ];
+
+      const tags = [
+        ["Cryptography", "very easy"],
+        ["Cryptography", "base64", "very easy"],
+        ["steganography", "Forensics", "RGB"],
+        ["Cryptography", "image", "caesar cipher"],
+        ["Reverse Engineering", "easy", "Js"],
+        ["base64", "easy", "cipher"],
+        ["Hash Cracking", "Brute Force", "SAM File"],
+        ["intermediate", "Sequential", "Alphanumeric"],
+        ["JavaScript", "Obfuscation", "web exploitation"],
+        ["forensics", "image", "stegnography"],
+        ["SHA-256", "Hashing", "Checksum"],
+        ["qr code", "intermediate"],
+        ["Powershell-7", "intermediate"],
+        ["password", "easy"],
+        ["vigenere cipher", "Encryption", "classic crypto"],
+      ];
+
+      let totalPoints = parseInt(sessionStorage.getItem("totalPoints")) || 0;
+      const completedChallenges = new Set(
+        JSON.parse(sessionStorage.getItem("completedChallenges")) || []
+      );
+      const revealedHints = new Set(
+        JSON.parse(sessionStorage.getItem("revealedHints")) || []
+      );
+      const teamName =
+        sessionStorage.getItem("teamName") || prompt("Enter your team name:");
+      sessionStorage.setItem("teamName", teamName);
+
+      document.getElementById("total-points").textContent = totalPoints;
+
+      const challengesGrid = document.getElementById("challengesGrid");
+      const tickImageSrc = "tick.png";
+
+      for (let i = 0; i < 15; i++) {
+        const challengeDiv = document.createElement("div");
+        challengeDiv.className = "challenge";
+        challengeDiv.id = `challenge${i + 1}`;
+        challengeDiv.setAttribute("data-challenge-number", i + 1);
+
+        const tagsHTML = tags[i]
+          .map((tag) => `<span class="tag">${tag}</span>`)
+          .join(" ");
+
+        challengeDiv.innerHTML = `
+      <h2>Challenge ${i + 1}</h2>
+      <p class="challenge-points">${points[i]} Points</p>
+      <p class="challenge-description">${descriptions[i]}</p>
+      <div class="tags-container">${tagsHTML}</div>
+      <input type="text" placeholder="flag{your_flag}" class="flag-input" value="${
+        sessionStorage.getItem(`flagInput${i}`) || ""
+      }">
+      <div class="buttons-row">
+          <a href="files/${fileNames[i]}" download="${
+          fileNames[i]
+        }" class="download-button">Download File</a>
+          <button onclick="checkFlag(${i}, event)" class="submit-button">Submit Flag</button>
+      </div>
+      <button onclick="showHint(${i})" class="hint-button">Hint</button>
+      <p class="hint" id="hint${i}"></p>
+      <p class="error-message"></p>
+      <img src="${tickImageSrc}" alt="Completed" class="status-image" id="status${i}">
+    `;
+
+        challengesGrid.appendChild(challengeDiv);
+      }
+
+      function checkFlag(challengeIndex, event) {
+        event.preventDefault();
+
+        const challenge =
+          document.getElementsByClassName("challenge")[challengeIndex];
+        const input = challenge.getElementsByClassName("flag-input")[0];
+        const errorMessage =
+          challenge.getElementsByClassName("error-message")[0];
+        const button = challenge.getElementsByClassName("submit-button")[0];
+        const statusImage = challenge.querySelector(".status-image");
+
+        fetch("/submit-flag", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            teamName: teamName,
+            challengeIndex: challengeIndex,
+            flag: input.value.trim(),
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            errorMessage.textContent = data.message;
+
+            if (data.message === "Correct flag!") {
+              totalPoints = data.score;
+              document.getElementById("total-points").textContent = totalPoints;
+
+              if (!completedChallenges.has(challengeIndex)) {
+                completedChallenges.add(challengeIndex);
+                sessionStorage.setItem(
+                  "completedChallenges",
+                  JSON.stringify(Array.from(completedChallenges))
+                );
+              }
+
+              input.disabled = true;
+              button.disabled = true;
+              statusImage.style.display = "block";
+              statusImage.classList.add("visible");
+              errorMessage.style.color = "#00b09b";
+            } else {
+              errorMessage.style.color = "#ff6b6b";
+            }
+          })
+          .catch(() => {
+            errorMessage.textContent = "Server error. Try again later.";
+            errorMessage.style.color = "#ff6b6b";
+          });
+
+        sessionStorage.setItem(`flagInput${challengeIndex}`, input.value);
+      }
+
+      function showHint(challengeIndex) {
+        if (
+          confirm(
+            "2 points shall be deducted on revealing the hint. Do you want to proceed?"
+          )
+        ) {
+          fetch(`/hints/${challengeIndex}`)
+            .then((res) => res.json())
+            .then((data) => {
+              const hint = document.getElementById(`hint${challengeIndex}`);
+              hint.textContent = data.hint;
+              hint.style.display = "block";
+              const hintButton =
+                document.getElementsByClassName("hint-button")[challengeIndex];
+              hintButton.disabled = true;
+
+              if (!revealedHints.has(challengeIndex)) {
+                totalPoints -= 2;
+                revealedHints.add(challengeIndex);
+                sessionStorage.setItem(
+                  "revealedHints",
+                  JSON.stringify([...revealedHints])
+                );
+              }
+
+              document.getElementById("total-points").textContent = totalPoints;
+              sessionStorage.setItem("totalPoints", totalPoints);
+
+              fetch("/scorecard/update", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ teamName: teamName, points: -2 }),
+              })
+                .then((response) => {
+                  if (!response.ok) throw new Error("Failed to update score");
+                  return response.text();
+                })
+                .then(() => console.log("Score updated due to hint usage"))
+                .catch((error) => console.error("Error:", error));
+            });
+        }
+      }
+
+      function initializePage() {
+        revealedHints.forEach((index) => {
+          const hint = document.getElementById(`hint${index}`);
+          hint.style.display = "block";
+          const hintButton =
+            document.getElementsByClassName("hint-button")[index];
+          hintButton.disabled = true;
+        });
+
+        completedChallenges.forEach((index) => {
+          const input = document.getElementsByClassName("flag-input")[index];
+          const button =
+            document.getElementsByClassName("submit-button")[index];
+          const statusImage = document.getElementById(`status${index}`);
+
+          input.disabled = true;
+          button.disabled = true;
+          statusImage.style.display = "block";
+          statusImage.classList.add("visible");
+        });
+      }
+
+      initializePage();
+
+      function handleResize() {
+        const challengesGrid = document.getElementById("challengesGrid");
+        if (window.innerWidth <= 1024) {
+          challengesGrid.style.gridTemplateColumns = "1fr";
+        } else {
+          challengesGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
+        }
+      }
+
+      handleResize();
+      window.addEventListener("resize", handleResize);
+
+      function redirectToScorecard() {
+        window.location.href = "scorecard.html";
+      }
+
+      function logout() {
+        sessionStorage.clear();
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

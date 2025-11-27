@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard - CodArt'24</title>
+    <link rel="stylesheet" href="styles3.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        header {
+            padding: 10px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CODART 3.O Scorecard</h1>
+    </header>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial Number</th>
+                    <th>Team Name</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody id="scorecard-body">
+                <!-- Rows will be dynamically generated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const numberOfTeams = 13;
+        const initialPoints = 0;
+
+        // Function to initialize the scorecard with 13 teams
+        function initializeScorecard() {
+            const scorecardBody = document.getElementById('scorecard-body');
+            scorecardBody.innerHTML = ''; // Clear existing rows
+
+            for (let i = 1; i <= numberOfTeams; i++) {
+                const row = document.createElement('tr');
+                row.id = `row${i}`;
+                row.innerHTML = `
+                    <td>${i}</td>
+                    <td>Team ${i}</td>
+                    <td>${initialPoints}</td>
+                `;
+                scorecardBody.appendChild(row);
+            }
+        }
+
+        // Function to fetch and update scores from the server
+        function fetchScores() {
+            fetch('/scorecard/data')
+                .then(response => response.json())
+                .then(scores => {
+                    const scorecardBody = document.getElementById('scorecard-body');
+                    
+                    // Update each row with the received data
+                    Object.entries(scores).forEach(([teamName, points], index) => {
+                        if (index < numberOfTeams) {
+                            const row = document.getElementById(`row${index + 1}`);
+                            if (row) {
+                                row.cells[1].textContent = teamName;
+                                row.cells[2].textContent = points;
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching scores:', error));
+        }
+
+        // Initialize the scorecard and fetch scores periodically
+        initializeScorecard();
+        fetchScores(); // Fetch scores initially
+        setInterval(fetchScores, 5000); // Fetch scores every 5 seconds
+    </script>
+</body>
+</html>
