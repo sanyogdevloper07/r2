@@ -117,8 +117,8 @@ h1 {
 }
 
 .challenge:hover {
-    border-color: #8b2be2;
-    box-shadow: 0 0 20px #8b2be2, 0 0 30px #8b2be2, 0 0 40px #8b2be2;
+    border-color: #5ba3eb;
+    box-shadow: 0 0 20px #5ba3eb, 0 0 30px #5ba3eb, 0 0 40px #5ba3eb;
     background: linear-gradient(135deg, rgba(45, 45, 60, 0.95), rgba(30, 30, 50, 1));
     transform: translateY(-5px) scale(1.02);
 }
