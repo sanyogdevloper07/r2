@@ -75,27 +75,27 @@
       const points = new Array(5).fill(50);
 
       const fileNames = [
-        "userfile.py",
-        "index.html",
-        "",
-        "",
-        ""
+        "data.zip",
+        "website.zip",
+        "c3.zip",
+        "briskaudioclip_1.zip",
+        "leak.zip"
       ];
 
       const descriptions = [
         "Welcome, operative. Your mission begins with a fragmented utility—a Python script recovered from a highly secured archive.<br>Your task is to analyze the environment and the provided code to locate and interpret the obscured data necessary to pass the final authentication step. Success in this stage will unlock a secret, encoded payload—the precursor to your final objective.",
         "Acquisition Protocol,<br>A critical data packet is available but locked behind an unstable interface.<br>The access system is protected by a dynamically unstable security measure. The trigger mechanism for data retrieval exhibits highly erratic behavior, designed to prevent unauthorized acquisition.<br>Your mission is to interact with this interface and successfully extract the required data packet, bypassing the active defense mechanism.",
-        "",
-        "",
-        ""
+        "During a forensic sweep, we recovered this image that doesn't add up. File analysis shows appended data streams, but they're locked behind basic access controls. The suspect used amateur-level obfuscation - hidden in places most overlook. <br> KEEP IN MIND, THE ANSWER IS UNDER LAYERED ENCRYPTIONS.",
+        "We recovered these three fragments from a compromised server. They appear to be part of a dead drop - each piece relies on the others in sequence. The visual contains access credentials, the audio holds the decryption method, and the text carries the protected message.",
+        "We pulled a whole bunch of files from a compromised server — logs, images, text files, configs, you name it. One of them has a real flag. The rest? Decoys, rabbit holes, and fake leads. Watch your step."
       ];
 
       const tags = [
         ["python", "base64", "rot13"],
         ["Image","inspection", "web exploitation"],
-        ["", "", ""],
-        ["", "", ""],
-        ["", "", ""]
+        ["cryptography", "forensics", "stegnography"],
+        ["audio", "qrcode", "encryption"],
+        ["forensics", "files", "searching"]
       ];
 
       let totalPoints = parseInt(sessionStorage.getItem("totalPoints")) || 0;

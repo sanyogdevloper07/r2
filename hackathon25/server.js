@@ -12,18 +12,18 @@ const scores = {};
 const FLAGS = {
   0: "flag{win_win_win}",
   1: "flag{soooo_hard}",
-  2: "flag{}",
-  3: "flag{}",
-  4: "flag{}"
+  2: "flag{tr1ck_1s_0ve4}",
+  3: "flag{brisk_4ey}",
+  4: "flag{so_thats_what_those_files_are_for__adec60bd}"
 };
 
 // Hints securely stored on server by challenge index
 const HINTS = [
   "The script is searching for a silent partner; scrutinize every file access and dependency. A keen eye on the filesystem will reveal the missing piece.",
   "I heard the browser allows you configure the website's code???, AND HEY look for what's behind the image retrieved",
-  "",
-  "",
-  ""
+  "The container has more than it shows. The lock expects a key that's already in your hands - just not in the right shape.",
+  "the audio reveals a key to decode a cipher text, have a through around 'ciphertext with key'. ",
+  "here's some direct info- some files lead you to a wrong flag, so don't get excited so early<br>a source told me the message you seek lies in a bunch of images somewhere."
 ];
 
 // Serve main.html by default
